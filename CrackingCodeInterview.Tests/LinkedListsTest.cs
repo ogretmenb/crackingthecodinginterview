@@ -191,14 +191,14 @@ namespace CrackingCodeInterview.Tests
                 node.Next.Next.Next.Next.Next = new Node<int>(2);
                 node.Next.Next.Next.Next.Next.Next = new Node<int>(1);
 
-                //3 -> 1 -> 2 -> 10 -> 5 -> 5 -> 8
-                Node<int> nodeExpected = new Node<int>(3);
-                nodeExpected.Next = new Node<int>(1);
-                nodeExpected.Next.Next = new Node<int>(2);
+                //1->2->3->10->5->8->5
+                Node<int> nodeExpected = new Node<int>(1);
+                nodeExpected.Next = new Node<int>(2);
+                nodeExpected.Next.Next = new Node<int>(3);
                 nodeExpected.Next.Next.Next = new Node<int>(10);
                 nodeExpected.Next.Next.Next.Next = new Node<int>(5);
-                nodeExpected.Next.Next.Next.Next.Next = new Node<int>(5);
-                nodeExpected.Next.Next.Next.Next.Next.Next = new Node<int>(8);
+                nodeExpected.Next.Next.Next.Next.Next = new Node<int>(8);
+                nodeExpected.Next.Next.Next.Next.Next.Next = new Node<int>(5);
 
 
 

@@ -75,7 +75,7 @@ namespace CrackingCodeInterview.Solutions.LinkedLists
             Node<T> firstXNodesHead = null, firstXNodes = null;
             for (int i = 0; i < numberOfNodes; i++)
             {
-                if (firstXNodes == null)
+                if (i == 0)
                 {
                     firstXNodesHead = new Node<T>(currentNode.Value);
                     firstXNodes = firstXNodesHead;

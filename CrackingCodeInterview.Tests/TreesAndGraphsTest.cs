@@ -367,14 +367,14 @@ namespace CrackingCodeInterview.Tests
         }
 
 
-        [Theory]
-        [MemberData(nameof(sampleBuildOrderTest))]
-        public void BuildOrderTest1(List<char> projectList, /* char[,] */Dictionary<char, List<char>> aProjectDepedencyList, List<char> expectedProjectBuildOrder)
-        {
+        // [Theory]
+        // [MemberData(nameof(sampleBuildOrderTest))]
+        // public void BuildOrderTest1(List<char> projectList, /* char[,] */Dictionary<char, List<char>> aProjectDepedencyList, List<char> expectedProjectBuildOrder)
+        // {
 
-            List<char> buildOrder = BuildOrder.calculateBuildOrder(projectList, aProjectDepedencyList);
-            Assert.Equal(expectedProjectBuildOrder, buildOrder);
-        }
+        //     List<char> buildOrder = BuildOrder.calculateBuildOrder(projectList, aProjectDepedencyList);
+        //     Assert.Equal(expectedProjectBuildOrder, buildOrder);
+        // }
         [Theory]
         [MemberData(nameof(sampleBuildOrderTest))]
         public void BuildOrderTest2(List<char> projectList, /* char[,] */Dictionary<char, List<char>> aProjectDepedencyList, List<char> expectedProjectBuildOrder)
@@ -389,8 +389,7 @@ namespace CrackingCodeInterview.Tests
         {
             get
             {
-                List<char> projectList = new List<char>();
-                //projectList.AddRange(new char[] { 'a', 'b', 'c', 'd', 'e', 'f' });
+                List<char> projectList = new List<char>();                
                 projectList.AddRange(new char[] { 'f', 'c', 'b', 'a', 'e', 'd', 'g' });
                 
 
@@ -405,7 +404,7 @@ namespace CrackingCodeInterview.Tests
                 List<char> orderedProjectList = new List<char>();
                 /* orderedProjectList.AddRange(new char[] { 'e', 'f', 'a', 'b', 'd', 'c' }); */
 
-                orderedProjectList.AddRange(new char[] { 'f', 'd', 'c', 'b', 'g', 'a', 'e' });
+                orderedProjectList.AddRange(new char[] { 'd', 'g', 'f', 'b', 'c', 'a', 'e' });
 
                 //return null;
                 return new List<object[]>
