@@ -389,11 +389,11 @@ namespace CrackingCodeInterview.Tests
         {
             get
             {
-                List<char> projectList = new List<char>();                
+                List<char> projectList = new List<char>();
                 projectList.AddRange(new char[] { 'f', 'c', 'b', 'a', 'e', 'd', 'g' });
-                
 
-                Dictionary<char, List<char>> aProjectDepedencyList = new Dictionary<char, List<char>>();               
+
+                Dictionary<char, List<char>> aProjectDepedencyList = new Dictionary<char, List<char>>();
 
                 aProjectDepedencyList.Add('f', new List<char>() { 'c', 'b', 'a' });
                 aProjectDepedencyList.Add('c', new List<char>() { 'a' });
@@ -413,5 +413,63 @@ namespace CrackingCodeInterview.Tests
                 };
             }
         }
+
+
+        [Theory]
+        [MemberData(nameof(sampleListOfFirstCommonAncestor))]
+        public void FirstCommonAncestorTest(TreeNode<int> root, TreeNode<int> p, TreeNode<int> q, TreeNode<int> expectedResult)
+        {
+
+            TreeNode<int> result = FirstCommonAncestor<int>.firstCommonAncestor(root, p, q);
+            Assert.Equal(expectedResult, result);
+        }
+        [Theory]
+        [MemberData(nameof(sampleListOfFirstCommonAncestor))]
+        public void FirstCommonAncestorTestMoreEfficient(TreeNode<int> root, TreeNode<int> p, TreeNode<int> q, TreeNode<int> expectedResult)
+        {
+           
+            TreeNode<int> result = FirstCommonAncestor<int>.commonAncestor(root, p, q);
+            Assert.Equal(expectedResult, result);
+        }
+        public static IEnumerable<object[]> sampleListOfFirstCommonAncestor
+        {
+            get
+            {
+                TreeNode<int> tree8 = new TreeNode<int>(8);
+                tree8.children = new TreeNode<int>[2];
+                TreeNode<int> tree5 = new TreeNode<int>(5);
+                TreeNode<int> tree10 = new TreeNode<int>(10);
+                tree8.children[0] = tree5;
+                tree8.children[1] = tree10;
+                TreeNode<int> tree3 = new TreeNode<int>(3);
+                TreeNode<int> tree7 = new TreeNode<int>(7);
+
+                tree5.children = new TreeNode<int>[2];
+                tree5.children[0] = tree3;
+                tree5.children[1] = tree7;
+
+                TreeNode<int> tree1 = new TreeNode<int>(1);
+
+                tree3.children = new TreeNode<int>[1];
+                tree3.children[0] = tree1;
+
+                TreeNode<int> tree9 = new TreeNode<int>(9);
+                TreeNode<int> tree11 = new TreeNode<int>(11);
+                tree10.children = new TreeNode<int>[2];
+                tree10.children[0] = tree9;
+                tree10.children[1] = tree11;
+
+                TreeNode<int> tree12 = new TreeNode<int>(12);
+                //int[] array1 = new int[] { 1, 3, 5, 7, 8, 9, 10, 11 };
+
+                return new List<object[]>
+                {
+                new object[] { tree8, tree3, tree7, tree5}
+                ,new object[] { tree8, tree1, tree5, tree5}
+                ,new object[] { tree8, tree1, tree11, tree8}
+                };
+            }
+        }
+
     }
 }
