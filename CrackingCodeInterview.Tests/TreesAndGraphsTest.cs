@@ -427,7 +427,7 @@ namespace CrackingCodeInterview.Tests
         [MemberData(nameof(sampleListOfFirstCommonAncestor))]
         public void FirstCommonAncestorTestMoreEfficient(TreeNode<int> root, TreeNode<int> p, TreeNode<int> q, TreeNode<int> expectedResult)
         {
-           
+
             TreeNode<int> result = FirstCommonAncestor<int>.commonAncestor(root, p, q);
             Assert.Equal(expectedResult, result);
         }
@@ -467,6 +467,41 @@ namespace CrackingCodeInterview.Tests
                 new object[] { tree8, tree3, tree7, tree5}
                 ,new object[] { tree8, tree1, tree5, tree5}
                 ,new object[] { tree8, tree1, tree11, tree8}
+                };
+            }
+        }
+
+        //allSequences
+        [Theory]
+        [MemberData(nameof(sampleListOfBSTSequences))]
+        public void BSTSequencesTest(TreeNode<int> root, List<LinkedList<int>> expectedResult)
+        {
+
+            List<LinkedList<int>> result = BSTSequences<int>.allSequences(root);
+            Assert.Equal(expectedResult, result);
+        }
+        public static IEnumerable<object[]> sampleListOfBSTSequences
+        {
+            get
+            {
+                 TreeNode<int> tree2 = new TreeNode<int>(2);
+                tree2.children = new TreeNode<int>[2];
+                TreeNode<int> tree1 = new TreeNode<int>(1);
+                TreeNode<int> tree3 = new TreeNode<int>(3);
+                tree2.children[0] = tree1;
+                tree2.children[1] = tree3;
+                
+                
+                List<LinkedList<int>> expectedResult = new List<LinkedList<int>>();
+                LinkedList<int> l1=new LinkedList<int>(), l2 = new LinkedList<int>();
+                l1.AddLast(2); l1.AddLast(1); l1.AddLast(3);
+                expectedResult.Add(l1);
+
+                l2.AddLast(2); l2.AddLast(3); l2.AddLast(1);
+                expectedResult.Add(l2);
+                return new List<object[]>
+                {
+                new object[] { tree2, expectedResult}                
                 };
             }
         }
