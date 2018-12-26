@@ -506,5 +506,73 @@ namespace CrackingCodeInterview.Tests
             }
         }
 
+        //CheckSubtree        
+        [Theory]
+        [MemberData(nameof(sampleListOfCheckSubtree))]
+        public void CheckSubtreeTest(TreeNode<int> T1, TreeNode<int> T2, bool expectedResult)
+        {
+
+            bool result = CheckSubtree<int>.IsSubtree(T1, T2);
+            Assert.Equal(expectedResult, result);
+        }
+        [Theory]
+        [MemberData(nameof(sampleListOfCheckSubtree))]
+        public void CheckSubtreeTestAlternative(TreeNode<int> T1, TreeNode<int> T2, bool expectedResult)
+        {
+
+            bool result = CheckSubtree<int>.IsSubtreeWithPreOrderTraversal(T1, T2);
+            Assert.Equal(expectedResult, result);
+        }
+        public static IEnumerable<object[]> sampleListOfCheckSubtree
+        {
+            get
+            {
+                TreeNode<int> tree8 = new TreeNode<int>(8);
+                tree8.children = new TreeNode<int>[2];
+                TreeNode<int> tree5 = new TreeNode<int>(5);
+                TreeNode<int> tree10 = new TreeNode<int>(10);
+                tree8.children[0] = tree5;
+                tree8.children[1] = tree10;
+                TreeNode<int> tree3 = new TreeNode<int>(3);
+                TreeNode<int> tree7 = new TreeNode<int>(7);
+
+                tree5.children = new TreeNode<int>[2];
+                tree5.children[0] = tree3;
+                tree5.children[1] = tree7;
+
+                TreeNode<int> tree1 = new TreeNode<int>(1);
+
+                tree3.children = new TreeNode<int>[1];
+                tree3.children[0] = tree1;
+
+                TreeNode<int> tree9 = new TreeNode<int>(9);
+                TreeNode<int> tree11 = new TreeNode<int>(11);
+                tree10.children = new TreeNode<int>[2];
+                tree10.children[0] = tree9;
+                tree10.children[1] = tree11;
+
+                TreeNode<int> tree12 = new TreeNode<int>(12);
+                
+                TreeNode<int> tree_new_10 = new TreeNode<int>(10);
+                tree_new_10.children = new TreeNode<int>[2];
+                TreeNode<int> tree_new_9 = new TreeNode<int>(9);
+                TreeNode<int> tree_NEW_11 = new TreeNode<int>(11);
+                tree_new_10.children[0] = tree_new_9;
+                tree_new_10.children[1] = tree_NEW_11;
+                
+                //int[] array1 = new int[] { 1, 3, 5, 7, 8, 9, 10, 11 };
+
+                return new List<object[]>
+                {
+                new object[] { tree8, tree3, true}
+                ,new object[] { tree8, tree1, true}
+                ,new object[] { tree8, tree11, true}
+                ,new object[] { tree8, tree12, false}
+                ,new object[] { tree8, tree_new_10, true}  //tree_new_10 not in tree T1, but it is a subtree according to the problem definition          
+                ,new object[] { null, null, true}
+                ,new object[] { null, tree11, false}
+                };
+            }
+        }
     }
 }
