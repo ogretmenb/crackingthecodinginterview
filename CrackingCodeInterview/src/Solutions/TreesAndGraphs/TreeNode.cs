@@ -38,5 +38,7 @@ namespace CrackingCodeInterview.Solutions.TreesAndGraphs
             return true;
         }
 
+        public override int GetHashCode() => this.item.GetHashCode();
+
     }
 }

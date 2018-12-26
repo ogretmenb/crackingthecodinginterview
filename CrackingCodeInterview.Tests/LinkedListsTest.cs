@@ -263,10 +263,8 @@ namespace CrackingCodeInterview.Tests
         [Theory]
         [MemberData(nameof(SumDataReverse))]
         public void SumListReverseRecursiveTest(Node<int> input1, Node<int> input2, Node<int> expected)
-        {
-            int carry = 0;
-            Node<int> totalResult = null;
-            //SumList.SumReverseRecursive(input1, input2, ref totalResult, ref carry);
+        {            
+            Node<int> totalResult = null;         
             totalResult = SumList.SumReverse(input1, input2);
             Assert.Equal(expected, totalResult);
         }

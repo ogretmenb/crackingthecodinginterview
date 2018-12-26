@@ -10,7 +10,7 @@ namespace CrackingCodeInterview.Solutions.LinkedLists
 
         public Node(T value) => Value = value;
 
-        //public override bool Equals(Node<T> obj)
+        public override int GetHashCode() => Value.GetHashCode();
         public override bool Equals(Object obj)
         {
             if (obj == null) return false;
