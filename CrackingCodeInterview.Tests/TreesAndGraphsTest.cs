@@ -484,16 +484,16 @@ namespace CrackingCodeInterview.Tests
         {
             get
             {
-                 TreeNode<int> tree2 = new TreeNode<int>(2);
+                TreeNode<int> tree2 = new TreeNode<int>(2);
                 tree2.children = new TreeNode<int>[2];
                 TreeNode<int> tree1 = new TreeNode<int>(1);
                 TreeNode<int> tree3 = new TreeNode<int>(3);
                 tree2.children[0] = tree1;
                 tree2.children[1] = tree3;
-                
-                
+
+
                 List<LinkedList<int>> expectedResult = new List<LinkedList<int>>();
-                LinkedList<int> l1=new LinkedList<int>(), l2 = new LinkedList<int>();
+                LinkedList<int> l1 = new LinkedList<int>(), l2 = new LinkedList<int>();
                 l1.AddLast(2); l1.AddLast(1); l1.AddLast(3);
                 expectedResult.Add(l1);
 
@@ -501,7 +501,7 @@ namespace CrackingCodeInterview.Tests
                 expectedResult.Add(l2);
                 return new List<object[]>
                 {
-                new object[] { tree2, expectedResult}                
+                new object[] { tree2, expectedResult}
                 };
             }
         }
@@ -552,14 +552,14 @@ namespace CrackingCodeInterview.Tests
                 tree10.children[1] = tree11;
 
                 TreeNode<int> tree12 = new TreeNode<int>(12);
-                
+
                 TreeNode<int> tree_new_10 = new TreeNode<int>(10);
                 tree_new_10.children = new TreeNode<int>[2];
                 TreeNode<int> tree_new_9 = new TreeNode<int>(9);
                 TreeNode<int> tree_NEW_11 = new TreeNode<int>(11);
                 tree_new_10.children[0] = tree_new_9;
                 tree_new_10.children[1] = tree_NEW_11;
-                
+
                 //int[] array1 = new int[] { 1, 3, 5, 7, 8, 9, 10, 11 };
 
                 return new List<object[]>
@@ -571,6 +571,37 @@ namespace CrackingCodeInterview.Tests
                 ,new object[] { tree8, tree_new_10, true}  //tree_new_10 not in tree T1, but it is a subtree according to the problem definition          
                 ,new object[] { null, null, true}
                 ,new object[] { null, tree11, false}
+                };
+            }
+        }
+
+
+        [Theory]
+        [MemberData(nameof(sampleRandomNodeTest))]
+        public void RandomNodeTest(BinaryTreeNode<int> root, int aNumberOfIterations)
+        {
+
+            //BinaryTreeNode<int> result = root.getRandomNode();
+            Dictionary<int, int> result =root.Randomness(aNumberOfIterations);
+            Assert.Equal(root, root);
+        }
+        public static IEnumerable<object[]> sampleRandomNodeTest
+        {
+            get
+            {
+                int numberOfIterations = 100000;
+                BinaryTreeNode<int> root = new BinaryTreeNode<int>(20);
+                root.insertinOrder(10);
+                root.insertinOrder(30);
+                root.insertinOrder(35);
+                root.insertinOrder(15);
+                root.insertinOrder(17);
+                root.insertinOrder(5);
+                root.insertinOrder(3);
+                root.insertinOrder(7);
+                return new List<object[]>
+                {
+                new object[] { root, numberOfIterations}
                 };
             }
         }
