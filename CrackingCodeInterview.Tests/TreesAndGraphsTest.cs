@@ -582,7 +582,7 @@ namespace CrackingCodeInterview.Tests
         {
 
             //BinaryTreeNode<int> result = root.getRandomNode();
-            Dictionary<int, int> result =root.Randomness(aNumberOfIterations);
+            Dictionary<int, int> result = root.Randomness(aNumberOfIterations);
             Assert.Equal(root, root);
         }
         public static IEnumerable<object[]> sampleRandomNodeTest
@@ -605,5 +605,33 @@ namespace CrackingCodeInterview.Tests
                 };
             }
         }
+
+        //
+        [Theory]
+        [MemberData(nameof(samplePathsWithSumTest))]
+        public void PathsWithSumTest(BinaryTreeNode<int> aNode, int aSum, int aExpectedTotalPaths)
+        {
+
+            int calculatedTotalPaths = PathsWithSum.CalculatePathsWithSum(aNode, aSum);
+            Assert.Equal(aExpectedTotalPaths, calculatedTotalPaths);
+        }
+        public static IEnumerable<object[]> samplePathsWithSumTest
+        {
+            get
+            {                
+                BinaryTreeNode<int> root = new BinaryTreeNode<int>(0), left1 = new BinaryTreeNode<int>(0), right1 = new BinaryTreeNode<int>(0),
+                left11 = new BinaryTreeNode<int>(-1),left12 = new BinaryTreeNode<int>(0);
+                root.left = left1;
+                root.right = right1;
+                left1.left = left11;
+                left11.left = left12;
+                               
+                return new List<object[]>
+                {
+                new object[] { root, 0, 6}                
+                };
+            }
+        }
+
     }
 }
